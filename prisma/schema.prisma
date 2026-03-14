@@ -18,6 +18,11 @@ model User {
   name      String?
   email     String   @unique
   image     String?
+
+  myPlayground Playground[]
+  staredPlayground Starmark[]
+
+
   accounts  Account[]
   role      UserRole @default(USER)
   createdAt DateTime @default(now())
@@ -45,4 +50,72 @@ model Account{
 
   @@unique([provider, providerAccountId])
   @@index([userId])
+}
+
+enum Templates {
+  REACTJS
+  REACT_VITE
+  NEXTJS
+  VUE_VITE
+  NUXT
+  ANGULAR
+  SVELTE
+  ASTRO
+
+  NODE_EXPRESS
+  NODE_FASTIFY
+  NODE_HONO
+  NODE_NEST
+
+  MERN
+  MEAN
+  T3_STACK
+  NEXT_PRISMA
+
+  PYTHON
+  JAVA
+  GO
+  RUST
+  CPP
+  C
+  CSHARP
+  PHP
+  RUBY
+
+  DOCKER_NODE
+  DOCKER_PYTHON
+  TYPESCRIPT_NODE
+  BUN_APP
+  DENO_APP
+}
+
+model Playground{
+  id String @id @default(cuid()) @map("_id")
+  title String
+  description String?
+  template Templates @default(REACTJS)
+  icon String @default("Code2")
+
+  starmarks Starmark[]
+  userId String
+  user User @relation(fields: [userId], references:[id], onDelete: Cascade)
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Starmark{
+  id String @id @default(cuid()) @map("_id")
+  userId String
+  playgroundId String
+  isMarked Boolean
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  playground Playground @relation(fields: [playgroundId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, playgroundId])
 }
