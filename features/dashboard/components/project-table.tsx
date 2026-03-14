@@ -1,0 +1,243 @@
+"use client";
+
+import Image from "next/image";
+import { format } from "date-fns";
+import { Project } from "../types";
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  MoreHorizontal,
+  Edit3,
+  Trash2,
+  ExternalLink,
+  Copy,
+  Download,
+  Eye,
+} from "lucide-react";
+import { toast } from "sonner";
+import { MarkedToggleButton } from "./toggle-star";
+
+interface ProjectTableProps {
+  projects: Project[];
+  onUpdateProject?: function;
+  onDeleteProject?: function;
+  onDuplicateProject?: function;
+}
+
+interface EditProjectData {
+  title: string;
+  description: string;
+}
+
+export default function ProjectTable({
+  projects,
+  onDeleteProject,
+  onDuplicateProject,
+  onUpdateProject,
+}: ProjectTableProps) {
+
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+    const[editDialogOpen ,setEditDialogOpen] = useState(false)
+    const[selectedProject, setSelectedProject] = useState<Project | null>(null)
+    const [editData, setEditData] = useState<EditProjectData>({title: " ", description: " "})
+    const [isLoading, setIsLoading] = useState(false)
+    const [favourite, setFavourite] = useState(false)
+
+
+
+    const handleDuplicateProject=async(project: Project)=>{
+        if(!onDuplicateProject) return;
+
+        setIsLoading(true)
+        try {
+            
+        } catch (error) {
+            
+        }finally{
+            
+        }
+    }
+
+    const handleEditClick=async(project: Project)=>{
+
+    }
+
+    const copyProjectUrl =async(projectId: string) =>{
+
+    }
+
+    const handleDeleteClick=async(project: Project)=>{
+
+    }
+
+ 
+
+  return (
+    <>
+      <div className="border rounded-lg overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Project</TableHead>
+              <TableHead>Template</TableHead>
+              <TableHead>Created</TableHead>
+              <TableHead>User</TableHead>
+              <TableHead className="w-12.5">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {projects.map((project) => (
+              <TableRow key={project.id}>
+                {/* for project title */}
+                <TableCell>
+                    <div className="flex flex-col">
+                    <Link
+                        href={`/playground/${project.id}`}
+                        className="hover:underline">
+                        <span className="font-semibold">{project.title}</span>
+                    </Link>
+                    </div>
+                </TableCell>
+
+                {/* for project template */}
+
+                <TableCell>
+                    <Badge
+                    variant='outline'
+                    className="bg-[#5970f115] text-[#5970f1] border-[#5970f1]">
+                        {project.template}
+                    </Badge>
+                </TableCell>
+
+                {/* for dates */}
+
+                <TableCell>{format(new Date(project.createdAt), "DD MM YYYY")}</TableCell>
+
+                {/* for user details */}
+                <TableCell>
+                    <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full overflow-hidden">
+                            <Image
+                                src={project.user.image || '/logo.svg'}
+                                alt={project.user.name}
+                                width={32}
+                                height={32}
+                                className="object-cover"/>
+                        </div>
+                        <span className="text-sm">{project.user.name}</span>
+                    </div>
+                </TableCell>
+
+                {/* DropDown Menu */}
+
+                 <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Open menu</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem asChild>
+                        <MarkedToggleButton
+                          markedForRevision={project.starmarks[0]?.isMarked}
+                          id={project.id}
+                        />
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link
+                          href={`/playground/${project.id}`}
+                          className="flex items-center"
+                        >
+                          <Eye className="h-4 w-4 mr-2" />
+                          Open Project
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link
+                          href={`/playground/${project.id}`}
+                          target="_blank"
+                          className="flex items-center"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Open in New Tab
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        onClick={() => handleEditClick(project)}
+                      >
+                        <Edit3 className="h-4 w-4 mr-2" />
+                        Edit Project
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => handleDuplicateProject(project)}
+                      >
+                        <Copy className="h-4 w-4 mr-2" />
+                        Duplicate
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => copyProjectUrl(project.id)}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Copy URL
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        onClick={() => handleDeleteClick(project)}
+                        className="text-destructive focus:text-destructive"
+                      >
+                        <Trash2 className="h-4 w-4 mr-2" />
+                        Delete Project
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </>
+  );
+}

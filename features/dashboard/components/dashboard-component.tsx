@@ -15,22 +15,39 @@ import {
   SidebarFooter,
   SidebarRail
 } from '@/components/ui/sidebar';
-import { 
+import {
+  Zap,
+  Lightbulb,
+  Database,
+  Compass,
+  Flame,
+  Terminal,
   Code2,
-  Compass, 
-  Database, 
-  FlameIcon, 
-  FolderPlus, 
-  History, 
-  Home, 
-  LayoutDashboardIcon, 
-  Lightbulb, 
-  LucideIcon, 
-  PlusCircleIcon, 
-  Settings2, 
-  Star, 
-  Terminal, 
-  Zap } from 'lucide-react';
+  Rocket,
+  Leaf,
+  Triangle,
+  Star,
+  Server,
+  Gauge,
+  Cloud,
+  Layers,
+  Boxes,
+  Coffee,
+  Wind,
+  Settings,
+  Gem,
+  Container,
+  FileCode,
+  Package,
+  Globe,
+  Home,
+  LayoutDashboardIcon,
+  PlusCircleIcon,
+  History,
+  FolderPlus,
+  Settings2,
+  LucideIcon
+} from "lucide-react"
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -44,14 +61,31 @@ interface PlaygroundDataProps{
     starred: boolean;
 }
 
-const lucideIconMap:Record<string, LucideIcon>={
-  Zap: Zap,
-  Lightbulb: Lightbulb,
-  Database: Database,
-  Compass: Compass,
-  FlameIcon: FlameIcon,
-  Terminal: Terminal,
-  Code2: Code2,
+const lucideIconMap: Record<string, LucideIcon> = {
+  Zap,
+  Lightbulb,
+  Database,
+  Compass,
+  Flame,
+  Terminal,
+  Code2,
+  Rocket,
+  Leaf,
+  Triangle,
+  Star,
+  Server,
+  Gauge,
+  Cloud,
+  Layers,
+  Boxes,
+  Coffee,
+  Wind,
+  Settings,
+  Gem,
+  Container,
+  FileCode,
+  Package,
+  Globe
 }
 
 const DashboardSidebar = ({initialPlaygroundData}:{initialPlaygroundData: PlaygroundDataProps[]}) => {
@@ -92,7 +126,7 @@ const DashboardSidebar = ({initialPlaygroundData}:{initialPlaygroundData: Playgr
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive={pathname === "/dashboard"} tooltip={"Home"} title='home'>
+              <SidebarMenuButton asChild isActive={pathname === "/dashboard"} tooltip={"Dashboard"} title='dashboard'>
                 <Link href="/dashboard">
                 <LayoutDashboardIcon className='size-4'/>
                 <span>DashBoard</span>
@@ -150,7 +184,7 @@ const DashboardSidebar = ({initialPlaygroundData}:{initialPlaygroundData: Playgr
             <History className="h-4 w-4 mr-2" />
             <span>Recent</span>
           </SidebarGroupLabel>
-          <SidebarGroupAction title="Add new playground">
+          <SidebarGroupAction title="View All">
             <FolderPlus className="h-4 w-4" />
           </SidebarGroupAction>
           <SidebarGroupContent>

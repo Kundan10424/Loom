@@ -1,5 +1,7 @@
+import { deleteProjectById, duplicateProjectById, editProjectById, getAllPlayground } from '@/features/dashboard/actions';
 import AddNewButton from '@/features/dashboard/components/add-new-button'
 import AddRepoButton from '@/features/dashboard/components/add-repo-button'
+import ProjectTable from '@/features/dashboard/components/project-table';
 import Image from 'next/image';
 
 interface Props{
@@ -8,11 +10,6 @@ interface Props{
   imageSrc: string;
 }
 
-//temporary playground
-interface Playgrounds{
-  id: string;
-  name:string;
-}
 
 const EmptyState = ({title, description, imageSrc}: Props) => {
   return (
@@ -33,8 +30,8 @@ const EmptyState = ({title, description, imageSrc}: Props) => {
   )
 }
 
-const page = () => {
-  const playgrounds: Playgrounds[] = [];
+const page = async() => {
+  const playgrounds = (await getAllPlayground()) ?? []
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -56,7 +53,12 @@ const page = () => {
             imageSrc="/empty-state.svg"
           />
         ) : (
-          <p>Playground Table</p>
+          <ProjectTable
+          // @ts-expect-error
+          projects={playgrounds || []}
+          onDeleteProject={deleteProjectById}
+          onUpdateProject={editProjectById}
+          onDuplicateProject={duplicateProjectById}/>
         )}
       </div>
 
