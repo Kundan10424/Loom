@@ -15,11 +15,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
      */
     async signIn({ user, account, profile }) {
       if (!user || !account) return false;
-
+      
       // Check if the user already exists
       const existingUser = await db.user.findUnique({
         where: { email: user.email! },
-      });
+      });      
 
       // If user does not exist, create a new one
       if (!existingUser) {

@@ -53,13 +53,13 @@ import {
   Eye,
 } from "lucide-react";
 import { toast } from "sonner";
-import { MarkedToggleButton } from "./toggle-star";
+// import { MarkedToggleButton } from "./toggle-star";
 
 interface ProjectTableProps {
   projects: Project[];
-  onUpdateProject?: function;
-  onDeleteProject?: function;
-  onDuplicateProject?: function;
+  onUpdateProject?: () => void;
+  onDeleteProject?: () => void;
+  onDuplicateProject?: () => void;
 }
 
 interface EditProjectData {
@@ -150,7 +150,7 @@ export default function ProjectTable({
 
                 {/* for dates */}
 
-                <TableCell>{format(new Date(project.createdAt), "DD MM YYYY")}</TableCell>
+                <TableCell>{format(new Date(project.createdAt), "dd MM yyyy")}</TableCell>
 
                 {/* for user details */}
                 <TableCell>
@@ -179,10 +179,10 @@ export default function ProjectTable({
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
                       <DropdownMenuItem asChild>
-                        <MarkedToggleButton
+                        {/* <MarkedToggleButton
                           markedForRevision={project.starmarks[0]?.isMarked}
                           id={project.id}
-                        />
+                        /> */}
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link
