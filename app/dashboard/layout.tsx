@@ -61,12 +61,13 @@ const technologyIconMap: Record<string, string> = {
   DENO_APP: "Globe"
 }
 
-const formattedPlaygroundData = playgroundData?.map((playground) => ({
-  id: playground.id,
-  name: playground.title,
-  starred: playground.starmarks?.[0].isMarked || false,
-  icon: technologyIconMap[playground.template] || "Code2"
-})) || []
+const formattedPlaygroundData =
+  playgroundData?.map((playground) => ({
+    id: playground.id,
+    name: playground.title,
+    starred: playground.starmarks?.[0]?.isMarked ?? false,
+    icon: technologyIconMap[playground.template] || "Code2",
+  })) || [];
 
   return (
     <SidebarProvider>

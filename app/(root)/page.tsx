@@ -8,7 +8,7 @@ export default function Home() {
     <div className="z-20 flex flex-col items-center min-h-screen justify-start py-2 -mt-20">
       <div className="flex flex-col jusify-center items-center mt-20">
         <Image src={"./hero.svg"} alt="Hero" width={250} height={250} />
-        <h1 className="z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-l from-violet-500 via-indigo-500 to-blue-500 dark:from-violet-600 dark:via-indigo-600 dark:to-blue-600 tracking-tight leading-[1.3]">
+        <h1 className="z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-r from-violet-500 via-indigo-500 to-blue-500 dark:from-violet-600 dark:via-indigo-600 dark:to-blue-600 tracking-tight leading-[1.3]">
           Code With Intelligence
         </h1>
 
