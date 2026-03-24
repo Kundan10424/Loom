@@ -81,8 +81,11 @@ export const editProjectById=async(id: string, data:{title:string, description: 
             where:{id},
             data: data
         })
+        revalidatePath("/dashboard")
+        return {success: true}
     } catch (error) {
         console.error(error)
+        return {success: false}
     }
 }
 
@@ -113,3 +116,4 @@ export const duplicateProjectById =async(id: string)=>{
         return null
     }
 }
+

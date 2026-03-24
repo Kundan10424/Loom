@@ -23,6 +23,7 @@ import {
   Clock,
   Check,
   Plus,
+  Braces,
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -274,7 +275,7 @@ const handleCreateProject = () => {
                                   <Globe size={14} className="text-blue-500" />
                                 )}
                                 {template.category === "Language" && (
-                                  <Globe size={14} className="text-blue-500" />
+                                  <Braces size={14} className="text-blue-500" />
                                 )}
                               </div>
                             </div>
