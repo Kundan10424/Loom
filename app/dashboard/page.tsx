@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import {
 deleteProjectById,
 duplicateProjectById,
@@ -48,7 +49,8 @@ const Page = async () => {
       <div className="flex flex-1 justify-center">
         <div className="w-full max-w-4xl px-4">
           {playgrounds.length === 0 ? (
-            <EmptyState
+           
+           <EmptyState
               title="No projects found"
               description="Create your first project or open a repository."
               imageSrc="/empty-state.svg"
