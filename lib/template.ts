@@ -16,10 +16,10 @@ export const templatePaths: Record<Templates, string> = {
   [Templates.ASTRO]: "/loom-starters/astro-shadcn",
 
   // Backend
-  [Templates.NODE_EXPRESS]: "/loom-starters/express-simple",
+  [Templates.NODE_EXPRESS]: "/loom-starters/node-express",
   [Templates.NODE_FASTIFY]: "/loom-starters/node-fastify",
-  [Templates.NODE_HONO]: "/loom-starters/hono-nodejs-starter",
-  [Templates.NODE_NEST]: "#",
+  [Templates.NODE_HONO]: "/loom-starters/hono",
+  [Templates.NODE_NEST]: "/loom-starters/nest",
 
   // FullStack
   [Templates.MERN]: "#",
@@ -35,7 +35,7 @@ export const templatePaths: Record<Templates, string> = {
   [Templates.CPP]: "#",
   [Templates.C]: "#",
   [Templates.CSHARP]: "#",
-  [Templates.PHP]: "#",
+  [Templates.PHP]: "/loom-starters/php", //ye template load nahi hua hai
   [Templates.RUBY]: "#",
 
   // Dev / Runtime

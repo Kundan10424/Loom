@@ -1,20 +1,19 @@
 {
-  "name": "node-fastify-starter",
+  "name": "hono-starter",
   "version": "1.0.0",
-  "description": "Node.js Fastify REST API",
+  "description": "Hono REST API starter",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "keywords": ["node", "fastify", "api", "rest"],
+  "keywords": ["hono", "node", "api", "rest"],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^4.24.3",
-    "@fastify/cors": "^8.4.0",
-    "@fastify/env": "^4.3.0",
+    "hono": "^4.1.0",
+    "@hono/node-server": "^1.9.0",
     "dotenv": "^16.3.1"
   },
   "devDependencies": {
